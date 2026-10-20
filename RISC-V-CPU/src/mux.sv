@@ -9,9 +9,9 @@
 // Implementa un multiplexor 2 a 1 parametrizable que permite
 // seleccionar una de dos entradas de datos.
 //
-// Autor / Developer:
+// Autor / Developer: Pablo Cabrera
 // Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Fecha de primera versión: 10/20/2
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
@@ -52,6 +52,6 @@ module mux2to1 #(
     // IMPLEMENTACIÓN DEL MÓDULO
     // ========================================================
 
-    // TODO: Implementar multiplexor 2 a 1.
+    assign Y = Select ? B : A;
 
 endmodule

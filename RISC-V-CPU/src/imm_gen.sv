@@ -11,7 +11,7 @@
 // implementar los formatos de inmediato indicados en la
 // especificación del Capítulo 1.
 //
-// Autor / Developer:
+// Autor / Developer: Pablo Cabrera
 // Nombre: ______________________________
 // Fecha de primera versión: ____/____/______
 //
@@ -46,10 +46,18 @@ module imm_gen (
     // IMPLEMENTACIÓN DEL MÓDULO
     // ========================================================
 
-    // TODO: Implementar la generación del inmediato.
 
-    // TODO: Implementar extensión de signo.
-
-    // Capítulo 1: incluir como mínimo los formatos I y S.
+    always_comb begin
+        case (ImmSrc)
+            // I-type: imm[11:0] = Instr[31:20]
+            2'b00:   ImmExt = {{20{Instr[31]}}, Instr[31:20]};
+ 
+            // S-type: imm[11:5] = Instr[31:25], imm[4:0] = Instr[11:7]
+            2'b01:   ImmExt = {{20{Instr[31]}}, Instr[31:25], Instr[11:7]};
+ 
+            // Formatos no implementados en el Capítulo 1 (B, J, U)
+            default: ImmExt = 32'b0;
+        endcase
+    end
 
 endmodule
