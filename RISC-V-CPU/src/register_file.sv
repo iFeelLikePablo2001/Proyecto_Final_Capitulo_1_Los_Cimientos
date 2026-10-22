@@ -6,9 +6,10 @@
 // Módulo: Register File
 //
 // Descripción:
-// Implementa el banco de 32 registros de 32 bits del procesador.
-// Permite leer dos registros simultáneamente y escribir un
-// registro cuando la señal RegWrite está habilitada.
+// Banco de 32 registros de 32 bits con dos puertos de lectura
+// y un puerto de escritura. La escritura es síncrona (flanco
+// positivo de clk) y la lectura es combinacional. El registro
+// x0 siempre vale cero.
 //
 // Autor / Developer:
 // Nombre: ______________________________
@@ -27,21 +28,17 @@
 // ============================================================
 // ENTRADAS
 // ------------------------------------------------------------
-// clk          : Señal de reloj.
-// A1           : Dirección del primer registro a leer.
-// A2           : Dirección del segundo registro a leer.
-// A3           : Dirección del registro a escribir.
-// WD3          : Dato de 32 bits que será escrito.
-// RegWrite     : Habilita la escritura en el banco de registros.
+// clk          : Reloj. La escritura ocurre en el flanco positivo.
+// A1           : Dirección del registro leído por el puerto 1.
+// A2           : Dirección del registro leído por el puerto 2.
+// A3           : Dirección del registro destino de la escritura.
+// WD3          : Dato de 32 bits a escribir en A3.
+// RegWrite     : Habilita la escritura (1 = escribir).
 //
 // SALIDAS
 // ------------------------------------------------------------
-// RD1          : Dato leído del registro seleccionado por A1.
-// RD2          : Dato leído del registro seleccionado por A2.
-//
-// CONDICIÓN ESPECIAL
-// ------------------------------------------------------------
-// El registro x0 debe conservar siempre el valor 0.
+// RD1          : Contenido del registro A1.
+// RD2          : Contenido del registro A2.
 // ============================================================
 
 module register_file (
@@ -59,12 +56,24 @@ module register_file (
     // IMPLEMENTACIÓN DEL MÓDULO
     // ========================================================
 
-    // TODO: Declarar el banco de registros.
+    // Arreglo de 32 registros de 32 bits
+    logic [31:0] regs [31:0];
 
-    // TODO: Implementar la lógica de escritura.
+    // Inicialización a cero (evita valores 'x' en simulación)
+    integer i;
+    initial begin
+        for (i = 0; i < 32; i = i + 1)
+            regs[i] = 32'b0;
+    end
 
-    // TODO: Implementar los puertos de lectura.
+    // Escritura síncrona: solo si RegWrite = 1 y el destino no es x0
+    always_ff @(posedge clk) begin
+        if (RegWrite && (A3 != 5'd0))
+            regs[A3] <= WD3;
+    end
 
-    // TODO: Garantizar que x0 permanezca siempre en cero.
+    // Lectura combinacional: x0 siempre devuelve cero
+    assign RD1 = (A1 == 5'd0) ? 32'b0 : regs[A1];
+    assign RD2 = (A2 == 5'd0) ? 32'b0 : regs[A2];
 
 endmodule
