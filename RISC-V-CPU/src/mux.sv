@@ -39,7 +39,7 @@
 // Y            : Entrada seleccionada.
 // ============================================================
 
-module mux #(
+module mux2to1 #(
     parameter WIDTH = 32
 )(
     input  logic [31:0] A,
