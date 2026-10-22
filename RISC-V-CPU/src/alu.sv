@@ -44,10 +44,25 @@ module alu (
     output logic        Zero
 );
 
-    // ========================================================
-    // IMPLEMENTACIÓN DEL MÓDULO
-    // ========================================================
 
-    // TODO: Implementar ALU
-
+    // Códigos internos de operación (según especificación 4.1)
+    localparam logic [3:0] ALU_ADD = 4'b0000;
+    localparam logic [3:0] ALU_SUB = 4'b0001;
+    localparam logic [3:0] ALU_AND = 4'b0010;
+    localparam logic [3:0] ALU_OR  = 4'b0011;
+ 
+    // Selección de la operación (lógica puramente combinacional)
+    always_comb begin
+        case (ALUControl)
+            ALU_ADD: Result = A + B;
+            ALU_SUB: Result = A - B;
+            ALU_AND: Result = A & B;
+            ALU_OR:  Result = A | B;
+            default: Result = 32'b0;  // Código no definido: evita latches
+        endcase
+    end
+ 
+    // Zero depende del resultado final, sin importar la operación
+    assign Zero = (Result == 32'b0);
+ 
 endmodule

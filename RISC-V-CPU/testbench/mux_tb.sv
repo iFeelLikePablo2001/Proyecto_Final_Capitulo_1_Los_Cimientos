@@ -23,41 +23,91 @@
 
 module mux_tb;
 
-    logic [31:0] A;
-    logic [31:0] B;
-    logic        Select;
-    logic [31:0] Y;
+  logic [31:0] A;
+  logic [31:0] B;
+  logic        Select;
+  logic [31:0] Y;
 
-    mux2to1 #(.WIDTH(32)) dut (
-        .A(A),
-        .B(B),
-        .Select(Select),
-        .Y(Y)
-    );
+  mux dut (
+      .A(A),
+      .B(B),
+      .Select(Select),
+      .Y(Y)
+  );
 
-    initial begin
+  task automatic check(
+	  input string id, 
+	  input logic [31:0] exp_y
+	  );
 
-        A = 32'h12345678;
-        B = 32'hABCDEF00;
+    if (Y == exp_y)
 
-        // ====================================================
-        // TEST 1 - Select = 0
-        // ====================================================
-        Select = 0;
-        #10;
-        // TODO: Verificar que Y corresponda a la entrada A.
+      $display(
+          "[PASS] %s | esperado=%0h | obtenido=%0h", id, $signed(exp_y), $signed(Y));
 
-        // ====================================================
-        // TEST 2 - Select = 1
-        // ====================================================
-        // TODO: Seleccionar B y verificar el resultado.
+    else begin
 
-        // ====================================================
-        // TEST 3 - Prueba adicional
-        // ====================================================
-        // TODO: Definir nuevos valores y comprobar ambos casos.
+      $display("[FAIL] %s | esperado=%0h | obtenido=%0h", id, $signed(exp_y), $signed(Y));
 
-        $finish;
     end
+  endtask
+
+  initial begin
+
+    A = 32'h12345678;
+    B = 32'hABCDEF00;
+
+    $display("A=32'h12345678, B=32'hABCDEF00");
+
+    // ====================================================
+    // TEST 1 - Select = 0
+    // ====================================================
+    Select = 0;
+
+    #10;
+
+    check("Select = 0", A);
+
+
+    // ====================================================
+    // TEST 2 - Select = 1
+    // ====================================================
+    Select = 1;
+
+    #10;
+
+    check("Select = 1", B);
+
+    // ====================================================
+    // TEST 3 - Prueba adicional
+    // ====================================================
+
+    #10;
+
+    A = 32'h11111111;
+    B = 32'hAAAAAAAA;
+
+    $display("A=32'h11111111, B=32'hAAAAAAAA");
+
+    // ====================================================
+    // TEST 1 - Select = 0
+    // ====================================================
+    Select = 0;
+
+    #10;
+
+    check("Select = 0", A);
+
+
+    // ====================================================
+    // TEST 2 - Select = 1
+    // ====================================================
+    Select = 1;
+
+    #10;
+
+    check("Select = 1", B);
+    $finish;
+  end
 
 endmodule
