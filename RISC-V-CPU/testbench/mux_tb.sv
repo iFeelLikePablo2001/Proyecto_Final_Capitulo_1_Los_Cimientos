@@ -1,3 +1,6 @@
+
+`timescale 1ns/1ps
+
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
@@ -5,109 +8,171 @@
 //
 // Testbench: Multiplexor 2 a 1
 //
-// Descripción:
+// Descripcion:
 // Verifica que el multiplexor seleccione correctamente cada
-// una de sus entradas según la señal Select.
+// una de sus entradas segun la senal Select.
 //
 // Autor / Verification Engineer:
 // Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Fecha de primera version: ____/____/______
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
-// Fecha       | Autor              | Descripción
+// Fecha       | Autor              | Descripcion
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera versión
+// ____/____/  | _________________  | Primera version
 //
 // ============================================================
 
 module mux_tb;
 
-  logic [31:0] A;
-  logic [31:0] B;
-  logic        Select;
-  logic [31:0] Y;
+    // Senales del testbench
+    logic [31:0] A;
+    logic [31:0] B;
+    logic        Select;
+    logic [31:0] Y;
 
-  mux dut (
-      .A(A),
-      .B(B),
-      .Select(Select),
-      .Y(Y)
-  );
+    // Instancia del modulo bajo prueba
+    mux2to1 #(.WIDTH(32)) dut (
+        .A(A),
+        .B(B),
+        .Select(Select),
+        .Y(Y)
+    );
 
-  task automatic check(
-	  input string id, 
-	  input logic [31:0] exp_y
-	  );
+    // Contadores de pruebas
+    integer total_tests;
+    integer passed_tests;
+    integer failed_tests;
 
-    if (Y == exp_y)
+    // ========================================================
+    // Tarea de verificacion automatica
+    // ========================================================
 
-      $display(
-          "[PASS] %s | esperado=%0h | obtenido=%0h", id, $signed(exp_y), $signed(Y));
+    task automatic check(
+        input string       id,
+        input logic [31:0] exp_y
+    );
+        begin
+            total_tests = total_tests + 1;
 
-    else begin
+            // Comparacion del resultado
+            if (Y === exp_y) begin
+                passed_tests = passed_tests + 1;
+                $display("[PASS] %s", id);
+            end
+            else begin
+                failed_tests = failed_tests + 1;
+                $display("[FAIL] %s", id);
+            end
 
-      $display("[FAIL] %s | esperado=%0h | obtenido=%0h", id, $signed(exp_y), $signed(Y));
+            // Entradas en tres formatos
+            $display("  ENTRADAS:");
+
+            $display("    A: DEC=%0d | HEX=0x%08h",
+                     $signed(A), A);
+            $display("       BIN=%032b", A);
+
+            $display("    B: DEC=%0d | HEX=0x%08h",
+                     $signed(B), B);
+            $display("       BIN=%032b", B);
+
+            $display("    Select=%b", Select);
+
+            // Resultado esperado
+            $display("  RESULTADO ESPERADO:");
+
+            $display("    DEC=%0d | HEX=0x%08h",
+                     $signed(exp_y), exp_y);
+
+            $display("    BIN=%032b", exp_y);
+
+            // Resultado obtenido
+            $display("  RESULTADO OBTENIDO:");
+
+            $display("    DEC=%0d | HEX=0x%08h",
+                     $signed(Y), Y);
+
+            $display("    BIN=%032b", Y);
+
+            $display("----------------------------------------");
+
+        end
+    endtask
+
+    // ========================================================
+    // Ejecucion de pruebas
+    // ========================================================
+
+    initial begin
+
+        total_tests  = 0;
+        passed_tests = 0;
+        failed_tests = 0;
+
+        // Valores iniciales
+        A = 32'h12345678;
+        B = 32'hABCDEF00;
+
+        // TEST 1 - Select = 0
+        Select = 0;
+        #10;
+        check("MUX-01 Select=0 (Entrada A)", 32'h12345678);
+
+        // TEST 2 - Select = 1
+        Select = 1;
+        #10;
+        check("MUX-02 Select=1 (Entrada B)", 32'hABCDEF00);
+
+        // Nuevos valores de entrada
+        A = 32'h11111111;
+        B = 32'hAAAAAAAA;
+
+        // TEST 3 - Select = 0
+        Select = 0;
+        #10;
+        check("MUX-03 Select=0 (Entrada A)", 32'h11111111);
+
+        // TEST 4 - Select = 1
+        Select = 1;
+        #10;
+        check("MUX-04 Select=1 (Entrada B)", 32'hAAAAAAAA);
+
+        // Valores extremos
+        A = 32'h00000000;
+        B = 32'hFFFFFFFF;
+
+        // TEST 5 - Seleccion de entrada cero
+        Select = 0;
+        #10;
+        check("MUX-05 Select=0 (Todos ceros)", 32'h00000000);
+
+        // TEST 6 - Seleccion de entrada maxima
+        Select = 1;
+        #10;
+        check("MUX-06 Select=1 (Todos unos)", 32'hFFFFFFFF);
+
+        // ====================================================
+        // Resumen final
+        // ====================================================
+
+        $display("");
+        $display("========== RESUMEN MUX ==========");
+        $display("Pruebas ejecutadas: %0d", total_tests);
+        $display("Pruebas aprobadas:  %0d", passed_tests);
+        $display("Pruebas fallidas:   %0d", failed_tests);
+
+        if (failed_tests != 0) begin
+            $display("Estado general: FAIL");
+            $display("=================================");
+            $fatal(1, "Verificacion MUX fallida: %0d pruebas.", failed_tests);
+        end
+        else begin
+            $display("Estado general: PASS");
+            $display("=================================");
+            $finish;
+        end
 
     end
-  endtask
-
-  initial begin
-
-    A = 32'h12345678;
-    B = 32'hABCDEF00;
-
-    $display("A=32'h12345678, B=32'hABCDEF00");
-
-    // ====================================================
-    // TEST 1 - Select = 0
-    // ====================================================
-    Select = 0;
-
-    #10;
-
-    check("Select = 0", A);
-
-
-    // ====================================================
-    // TEST 2 - Select = 1
-    // ====================================================
-    Select = 1;
-
-    #10;
-
-    check("Select = 1", B);
-
-    // ====================================================
-    // TEST 3 - Prueba adicional
-    // ====================================================
-
-    #10;
-
-    A = 32'h11111111;
-    B = 32'hAAAAAAAA;
-
-    $display("A=32'h11111111, B=32'hAAAAAAAA");
-
-    // ====================================================
-    // TEST 1 - Select = 0
-    // ====================================================
-    Select = 0;
-
-    #10;
-
-    check("Select = 0", A);
-
-
-    // ====================================================
-    // TEST 2 - Select = 1
-    // ====================================================
-    Select = 1;
-
-    #10;
-
-    check("Select = 1", B);
-    $finish;
-  end
 
 endmodule
