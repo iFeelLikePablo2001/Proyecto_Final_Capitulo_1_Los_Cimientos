@@ -1,7 +1,7 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: 4 (Los Ohmnívoros)
 //
 // Módulo: ALU
 //
@@ -10,8 +10,8 @@
 // por el procesador RISC-V.
 //
 // Autor / Developer:
-// Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Nombre: Julián Murillo Wo Ching 
+// Fecha de primera versión: 22/10/2026
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------

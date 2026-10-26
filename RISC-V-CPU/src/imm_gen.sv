@@ -1,7 +1,7 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: 4 (Los Ohmnívoros) 
 //
 // Módulo: Immediate Generator
 //
@@ -13,7 +13,7 @@
 //
 // Autor / Developer: Pablo Cabrera
 // Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Fecha de primera versión: 20/10/2026
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------

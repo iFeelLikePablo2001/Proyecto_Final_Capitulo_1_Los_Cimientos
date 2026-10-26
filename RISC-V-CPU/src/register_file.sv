@@ -1,7 +1,7 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: 4 (Los Ohmnívoros) 
 //
 // Módulo: Register File
 //
@@ -12,8 +12,8 @@
 // x0 siempre vale cero.
 //
 // Autor / Developer:
-// Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Nombre: Julián Murillo Wo Ching 
+// Fecha de primera versión: 22/10/2026
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
