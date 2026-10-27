@@ -3,24 +3,24 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: Ohminivoros 
 //
 // Testbench: ALU
 //
 // Descripción:
-// Verifica el funcionamiento de la ALU para las operaciones
-// aritméticas y lógicas definidas en la especificación.
+// Implementa las operaciones aritméticas y lógicas requeridas
+// por el procesador RISC-V.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha de primera versión: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera versión: 22/10/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera versión
-//
+// 22/10/26  | Ivan Arce Quiros  | Primera versión
+// 25/10/26  | Ivan Arce Quiros  | Ultima versión
 // ============================================================
 
 module alu_tb;
@@ -33,7 +33,7 @@ module alu_tb;
     logic [31:0] Result;
     logic        Zero;
 
-    // Instancia del modulo bajo prueba
+    // Instancias
     alu dut (
         .A(A),
         .B(B),
@@ -46,10 +46,6 @@ module alu_tb;
     integer total_tests;
     integer passed_tests;
     integer failed_tests;
-
-    // ========================================================
-    // Tarea de verificacion automatica
-    // ========================================================
 
     task automatic check(
         input string       id,
@@ -69,7 +65,7 @@ module alu_tb;
                 $display("[FAIL] %s", id);
             end
 
-            // Entradas en tres formatos
+            // Entradas
             $display("  ENTRADAS:");
 
             $display("    A: DEC=%0d | HEX=0x%08h",
@@ -103,9 +99,7 @@ module alu_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
 
     initial begin
 
@@ -169,9 +163,7 @@ module alu_tb;
         #10;
         check("ALU-08 AND disjunto (Zero=1)", 32'd0, 1'b1);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
 
         $display("");
         $display("========== RESUMEN ALU ==========");
