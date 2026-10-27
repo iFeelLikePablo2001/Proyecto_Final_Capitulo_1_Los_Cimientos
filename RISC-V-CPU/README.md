@@ -61,13 +61,13 @@ Los archivos `.sv` utilizados localmente deben ser compatibles con los archivos 
 
 Las simulaciones de los módulos se realizaron utilizando EDA Playground. A continuación, se presentan los enlaces correspondientes a cada componente.
 
-ALU: [Agregar enlace de EDA Playground]
+ALU: https://www.edaplayground.com/x/rArT
 
-Register File: [Agregar enlace de EDA Playground]
+Register File: https://www.edaplayground.com/x/9NTD
 
-Immediate Generator: [Agregar enlace de EDA Playground]
+Immediate Generator: https://www.edaplayground.com/x/8Eq_
 
-MUX: [Agregar enlace de EDA Playground]
+MUX: https://www.edaplayground.com/x/vY9z
 
 ## Convenciones
 
