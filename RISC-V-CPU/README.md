@@ -8,19 +8,16 @@ Este paquete contiene las plantillas iniciales para el desarrollo y verificació
 
 ## Grupo
 
-Nombre de grupo: ____________________
+Nombre de grupo: Ohmnivoros
 
 ## Integrantes y roles
 
-- Team Lead: ______________________________
-- Hardware Developer 1: ___________________
-- Hardware Developer 2: ___________________
-- Verification Engineer: __________________
-- Documentation & Configuration Engineer: _
+- Team Lead: Karla Priscila Arias Arias
+- Hardware Developer 1: Pablo Andrés Cabrera Montealegre
+- Hardware Developer 2: Julián Murillo Wo Ching
+- Verification Engineer: Iván Josué Arias Quiros
+- Documentation & Configuration Engineer: Chavelli Fernández Murillo
 
-> En los grupos de cuatro integrantes, las responsabilidades deberán redistribuirse entre los miembros del equipo.
-
-Los roles representan responsabilidades principales. Todos los integrantes deben conocer el funcionamiento general de los módulos y estar preparados para explicar el diseño durante la defensa.
 
 ## Estructura
 
@@ -70,21 +67,12 @@ Los archivos `.sv` utilizados localmente deben ser compatibles con los archivos 
 
 | Módulo | Implementación | Verificación | Estado |
 |---|---|---|---|
-| ALU | TODO | TODO | Pendiente |
-| Register File | TODO | TODO | Pendiente |
-| Immediate Generator | TODO | TODO | Pendiente |
-| MUX | TODO | TODO | Pendiente |
+| ALU | TODO | TODO | Verificado |
+| Register File | TODO | TODO | Verificado |
+| Immediate Generator | TODO | TODO | Verificado |
+| MUX | TODO | TODO | Verificado |
 
 ## Evidencia de verificación
 
-El equipo debe documentar los casos de prueba ejecutados utilizando la matriz de pruebas solicitada en las instrucciones del proyecto. Cada caso debe incluir como mínimo:
+La evidencia de verificación de los módulos se encuentra en el informe técnico y en la carpeta evidencias/, donde se incluyen capturas de las simulaciones realizadas para cada componente. Estas evidencias permiten observar los resultados de las pruebas de la ALU, el banco de registros, el generador de inmediatos y el multiplexor.
 
-- Identificador del test.
-- Condición o entrada utilizada.
-- Resultado esperado.
-- Resultado obtenido.
-- Estado PASS/FAIL.
-
-## Importante
-
-Las plantillas proporcionan la interfaz y estructura inicial del proyecto. La implementación de los módulos, la ampliación de los testbenches y el análisis de los resultados son responsabilidad del equipo.
