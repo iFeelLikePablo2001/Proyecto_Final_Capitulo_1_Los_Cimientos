@@ -4,24 +4,25 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: Ohminivoros 
 //
 // Testbench: Register File
 //
 // Descripcion:
-// Verifica las operaciones de lectura y escritura del banco de
-// registros, incluyendo el comportamiento especial de x0.
+// Implementa el banco de 32 registros de 32 bits del procesador.
+// Permite leer dos registros simultáneamente y escribir un
+// registro cuando la señal RegWrite está habilitada.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha de primera version: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera versión: 22/10/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
-// Fecha       | Autor              | Descripcion
+// Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
-//
+// 22/10/26  | Ivan Arce Quiros  | Primera versión
+// 25/10/26  | Ivan Arce Quiros  | Ultima versión
 // ============================================================
 
 module register_file_tb;
@@ -36,7 +37,7 @@ module register_file_tb;
     logic [31:0] RD1;
     logic [31:0] RD2;
 
-    // Instancia del modulo bajo prueba
+    // Instancias
     register_file dut (
         .clk(clk),
         .A1(A1),
@@ -57,9 +58,7 @@ module register_file_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
-    // Tarea de verificacion automatica
-    // ========================================================
+    // Verificacion automatica
 
     task automatic check(
         input string       id,
@@ -110,9 +109,7 @@ module register_file_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
 
     initial begin
 
