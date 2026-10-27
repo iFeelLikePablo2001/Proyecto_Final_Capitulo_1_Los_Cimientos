@@ -33,6 +33,11 @@ RISC-V-CPU/
 │   ├── register_file_tb.sv
 │   ├── imm_gen_tb.sv
 │   └── mux_tb.sv
+├── Imágenes de Puebas
+|   ├──ALU
+|   ├── Imm_gen
+|   ├──Mux
+├── Liks
 ├── docs/
 └── README.md
 ```
