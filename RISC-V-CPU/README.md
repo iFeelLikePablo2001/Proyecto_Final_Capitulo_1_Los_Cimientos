@@ -67,7 +67,7 @@ Los archivos `.sv` utilizados localmente deben ser compatibles con los archivos 
 
 | Módulo | Implementación | Verificación | Estado |
 |---|---|---|---|
-| ALU | TODO | TODO | Verificado |
+| ALU | TODO | TODO | Verificado | 
 | Register File | TODO | TODO | Verificado |
 | Immediate Generator | TODO | TODO | Verificado |
 | MUX | TODO | TODO | Verificado |
