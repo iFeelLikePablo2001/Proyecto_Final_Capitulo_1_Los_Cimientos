@@ -4,23 +4,24 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: Ohminivoros 
 //
 // Testbench: Multiplexor 2 a 1
 //
 // Descripcion:
-// Verifica que el multiplexor seleccione correctamente cada
-// una de sus entradas segun la senal Select.
+// Implementa un multiplexor 2 a 1 parametrizable que permite
+// seleccionar una de dos entradas de datos.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha de primera version: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera versión: 22/10/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
-// Fecha       | Autor              | Descripcion
+// Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
+// 22/10/26  | Ivan Arce Quiros  | Primera versión
+// 25/10/26  | Ivan Arce Quiros  | Ultima versión
 //
 // ============================================================
 
@@ -32,7 +33,7 @@ module mux_tb;
     logic        Select;
     logic [31:0] Y;
 
-    // Instancia del modulo bajo prueba
+    // Instancias
     mux2to1 #(.WIDTH(32)) dut (
         .A(A),
         .B(B),
@@ -45,9 +46,7 @@ module mux_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
-    // Tarea de verificacion automatica
-    // ========================================================
+    // Verificacion automatica
 
     task automatic check(
         input string       id,
@@ -66,7 +65,7 @@ module mux_tb;
                 $display("[FAIL] %s", id);
             end
 
-            // Entradas en tres formatos
+            // Entradas 
             $display("  ENTRADAS:");
 
             $display("    A: DEC=%0d | HEX=0x%08h",
@@ -100,9 +99,7 @@ module mux_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
 
     initial begin
 
@@ -152,9 +149,7 @@ module mux_tb;
         #10;
         check("MUX-06 Select=1 (Todos unos)", 32'hFFFFFFFF);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
 
         $display("");
         $display("========== RESUMEN MUX ==========");
