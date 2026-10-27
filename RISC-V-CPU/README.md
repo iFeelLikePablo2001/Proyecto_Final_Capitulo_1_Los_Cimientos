@@ -57,6 +57,18 @@ Simulación oficial: EDA Playground.
 
 Los archivos `.sv` utilizados localmente deben ser compatibles con los archivos entregados y simulados en EDA Playground.
 
+## Enlaces de simulación
+
+Las simulaciones de los módulos se realizaron utilizando EDA Playground. A continuación, se presentan los enlaces correspondientes a cada componente.
+
+ALU: [Agregar enlace de EDA Playground]
+
+Register File: [Agregar enlace de EDA Playground]
+
+Immediate Generator: [Agregar enlace de EDA Playground]
+
+MUX: [Agregar enlace de EDA Playground]
+
 ## Convenciones
 
 1. No eliminar el encabezado de los archivos proporcionados.
