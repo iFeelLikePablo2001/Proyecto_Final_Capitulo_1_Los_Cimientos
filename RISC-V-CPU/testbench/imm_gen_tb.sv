@@ -4,23 +4,26 @@
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
 // Curso: Diseño de Sistemas Digitales
-// Grupo: TODO
+// Grupo: Ohminivoros 
 //
 // Testbench: Immediate Generator
 //
 // Descripcion:
-// Verifica la generacion y extension de los valores inmediatos
-// requeridos durante el Capitulo 1 del proyecto.
+// Genera y extiende a 32 bits el valor inmediato contenido en
+// una instrucción RISC-V. En esta etapa del proyecto se deben
+// implementar los formatos de inmediato indicados en la
+// especificación del Capítulo 1.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha de primera version: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera versión: 22/10/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
-// Fecha       | Autor              | Descripcion
+// Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
+// 22/10/26  | Ivan Arce Quiros  | Primera versión
+// 25/10/26  | Ivan Arce Quiros  | Ultima versión
 //
 // ============================================================
 
@@ -31,7 +34,7 @@ module imm_gen_tb;
     logic [1:0]  ImmSrc;
     logic [31:0] ImmExt;
 
-    // Instancia del modulo bajo prueba
+    // Instancia
     imm_gen dut (
         .Instr(Instr),
         .ImmSrc(ImmSrc),
@@ -43,9 +46,7 @@ module imm_gen_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
-    // Tarea de verificacion automatica
-    // ========================================================
+    // Verificacion automatica
 
     task automatic check(
         input string       id,
@@ -64,7 +65,7 @@ module imm_gen_tb;
                 $display("[FAIL] %s", id);
             end
 
-            // Entradas en tres formatos
+            // Entradas
             $display("  ENTRADAS:");
 
             $display("    Instr: DEC=%0d | HEX=0x%08h",
@@ -94,9 +95,7 @@ module imm_gen_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
 
     initial begin
 
@@ -184,9 +183,7 @@ module imm_gen_tb;
         #10;
         check("IMM-08 S-type minimo (-2048)", -32'sd2048);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
 
         $display("");
         $display("========== RESUMEN IMM GEN ==========");
