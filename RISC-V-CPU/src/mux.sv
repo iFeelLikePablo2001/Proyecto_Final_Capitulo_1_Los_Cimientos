@@ -41,16 +41,16 @@
 
 module mux2to1 #(
     parameter WIDTH = 32
-)(
-    input  logic [31:0] A,
-    input  logic [31:0] B,
-    input  logic             Select,
-    output logic [31:0] Y
+) (
+    input  logic [WIDTH - 1:0] A,
+    input  logic [WIDTH - 1:0] B,
+    input  logic               Select,
+    output logic [WIDTH - 1:0] Y
 );
 
-    // ========================================================
-    // IMPLEMENTACIÓN DEL MÓDULO
-    // ========================================================
+  // ========================================================
+  // IMPLEMENTACIÓN DEL MÓDULO
+  // ========================================================
 
-    assign Y = Select ? B : A;
+  assign Y = Select ? B : A;
 endmodule
