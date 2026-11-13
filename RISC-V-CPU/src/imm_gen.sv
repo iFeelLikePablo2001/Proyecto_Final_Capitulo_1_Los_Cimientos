@@ -12,14 +12,14 @@
 // especificación del Capítulo 1.
 //
 // Autor / Developer: Pablo Cabrera
-// Nombre: ______________________________
+// Nombre: imm_gen.sv
 // Fecha de primera versión: 20/10/2026
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera versión
+// 20/10/2026  | Pablo Cabrera      | Primera versión
 // ____/____/  | _________________  | ________________________
 // ____/____/  | _________________  | ________________________
 //
