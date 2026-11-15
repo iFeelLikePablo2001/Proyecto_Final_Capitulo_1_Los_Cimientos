@@ -2,27 +2,27 @@
 
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
-// Curso: Diseno de Sistemas Digitales
+// Curso: Diseño de Sistemas Digitales
 // Grupo: 4 (Los Ohmnivoros)
 //
 // Testbench: Control Unit
 //
 // Descripcion:
-// Verifica las senales de control para las siete
-// instrucciones obligatorias del procesador RISC-V
-// y comprueba que las instrucciones no soportadas
-// no habiliten escrituras.
+// Verifica la decodificacion de las instrucciones RISC-V
+// y la generacion de sus respectivas senales de control.
+// Comprueba las siete instrucciones requeridas y casos
+// no soportados mediante indicadores automaticos PASS/FAIL.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera version: 13/11/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripcion
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
-//
+// 13/11/26    | Ivan Arce Quiros   | Primera version
+// 15/11/26    | Ivan Arce Quiros   | Revision y validacion final
 // ============================================================
 
 module control_unit_tb;
