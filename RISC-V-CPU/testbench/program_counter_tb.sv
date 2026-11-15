@@ -8,19 +8,21 @@
 // Testbench: Program Counter
 //
 // Descripcion:
-// Verifica la actualizacion del PC en el flanco positivo,
-// el reset sincrono activo en alto y la carga de PCNext.
+// Verifica el reinicio sincrono del Program Counter y la
+// actualizacion de su valor en el flanco positivo del reloj.
+// Comprueba los resultados esperados y obtenidos mediante
+// pruebas automaticas con indicadores PASS/FAIL.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera version: 13/11/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripcion
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
-//
+// 13/11/26    | Ivan Arce Quiros   | Primera version
+// 15/11/26    | Ivan Arce Quiros   | Revision y validacion final
 // ============================================================
 
 module program_counter_tb;
