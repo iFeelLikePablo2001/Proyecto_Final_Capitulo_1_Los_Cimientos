@@ -46,7 +46,7 @@
 
 module instruction_memory #(
     parameter int    DEPTH     = 64,  //Debe de ser potencia de 2
-    parameter string INIT_FILE = ""
+    parameter INIT_FILE = ""
 ) (
     input  logic [31:0] A,  //Dirección
     output logic [31:0] RD  //Instrucción
