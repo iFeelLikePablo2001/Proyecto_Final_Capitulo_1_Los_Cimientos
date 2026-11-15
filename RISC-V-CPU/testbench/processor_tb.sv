@@ -28,9 +28,8 @@
 
 module processor_tb;
 
-    // =========================================
+
     // 1. DECLARACION DE SEÑALES
-    // =========================================
 
     logic clk;
     logic reset;
@@ -43,9 +42,7 @@ module processor_tb;
     integer failed_tests;
 
 
-    // =========================================
     // 2. INSTANCIA DEL PROCESADOR
-    // =========================================
 
     processor dut (
         .clk(clk),
@@ -55,18 +52,14 @@ module processor_tb;
     );
 
 
-    // =========================================
     // 3. GENERACION DEL RELOJ
-    // =========================================
 
     initial clk = 0;
 
     always #5 clk = ~clk;
 
 
-    // =========================================
     // 4. TAREA PARA VERIFICAR RESULTADOS
-    // =========================================
 
     task automatic verificar(
         input string nombre,
@@ -108,11 +101,8 @@ module processor_tb;
 
     endtask
 
-
-    // =========================================
     // 5. TAREA PARA AVANZAR UN CICLO
-    // =========================================
-
+    
     task automatic avanzar_ciclo(
         input string nombre,
         input logic [31:0] pc_esperado
@@ -131,9 +121,7 @@ module processor_tb;
     endtask
 
 
-    // =========================================
     // 6. PROGRAMA DE PRUEBAS
-    // =========================================
 
     initial begin
 
@@ -144,9 +132,7 @@ module processor_tb;
         reset = 1;
 
 
-        // =====================================
         // 7. CARGA DEL PROGRAMA RISC-V
-        // =====================================
 
         #1;
 
@@ -192,9 +178,7 @@ module processor_tb;
         $display("========================================\n");
 
 
-        // =====================================
         // 8. VERIFICACION DEL RESET
-        // =====================================
 
         @(posedge clk);
 
@@ -220,9 +204,7 @@ module processor_tb;
         reset = 0;
 
 
-        // =====================================
         // 9. INSTRUCCION 1: ADDI
-        // =====================================
 
         avanzar_ciclo(
             "CPU-01 PC despues de ADDI",
@@ -236,9 +218,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 10. INSTRUCCION 2: ADDI
-        // =====================================
 
         avanzar_ciclo(
             "CPU-02 PC despues de ADDI",
@@ -252,9 +232,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 11. INSTRUCCION 3: ADD
-        // =====================================
 
         avanzar_ciclo(
             "CPU-03 PC despues de ADD",
@@ -268,9 +246,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 12. INSTRUCCION 4: SUB
-        // =====================================
 
         avanzar_ciclo(
             "CPU-04 PC despues de SUB",
@@ -284,9 +260,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 13. INSTRUCCION 5: AND
-        // =====================================
 
         avanzar_ciclo(
             "CPU-05 PC despues de AND",
@@ -300,9 +274,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 14. INSTRUCCION 6: OR
-        // =====================================
 
         avanzar_ciclo(
             "CPU-06 PC despues de OR",
@@ -316,9 +288,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 15. INSTRUCCION 7: SW
-        // =====================================
 
         avanzar_ciclo(
             "CPU-07 PC despues de SW",
@@ -332,9 +302,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 16. INSTRUCCION 8: LW
-        // =====================================
 
         avanzar_ciclo(
             "CPU-08 PC despues de LW",
@@ -348,9 +316,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 17. INSTRUCCION 9: ADDI NEGATIVO
-        // =====================================
 
         avanzar_ciclo(
             "CPU-09 PC despues de ADDI negativo",
@@ -364,9 +330,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 18. INSTRUCCION 10: SW
-        // =====================================
 
         avanzar_ciclo(
             "CPU-10 PC despues de SW",
@@ -380,9 +344,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 19. INSTRUCCION 11: LW
-        // =====================================
 
         avanzar_ciclo(
             "CPU-11 PC despues de LW",
@@ -396,9 +358,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 20. INSTRUCCION 12: ADD
-        // =====================================
 
         avanzar_ciclo(
             "CPU-12 PC despues de ADD",
@@ -412,9 +372,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 21. VERIFICACION REGISTRO X0
-        // =====================================
 
         verificar(
             "CPU-13 Registro x0 permanece en cero",
@@ -423,9 +381,7 @@ module processor_tb;
         );
 
 
-        // =====================================
         // 22. RESUMEN FINAL
-        // =====================================
 
         $display("");
         $display("========== RESUMEN PROCESSOR ==========");
