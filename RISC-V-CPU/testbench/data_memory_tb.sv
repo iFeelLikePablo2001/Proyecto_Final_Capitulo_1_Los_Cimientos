@@ -54,10 +54,7 @@ module data_memory_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
     // Tarea de verificacion automatica
-    // ========================================================
-
     task automatic check(
         input string       id,
         input logic [31:0] exp_rd
@@ -105,10 +102,7 @@ module data_memory_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
-
     initial begin
 
         // Inicializacion
@@ -120,19 +114,13 @@ module data_memory_tb;
         passed_tests = 0;
         failed_tests = 0;
 
-        // ====================================================
         // TEST 1 - Memoria inicializada en cero
-        // ====================================================
-
         #1;
 
         check("DM-01 Memoria inicializada",
               32'h00000000);
 
-        // ====================================================
         // TEST 2 - Escritura y lectura en direccion 0
-        // ====================================================
-
         @(negedge clk);
         A = 32'd0;
         WD = 32'h12345678;
@@ -145,10 +133,7 @@ module data_memory_tb;
         check("DM-02 Escritura direccion 0",
               32'h12345678);
 
-        // ====================================================
         // TEST 3 - Escritura y lectura en direccion 4
-        // ====================================================
-
         @(negedge clk);
         A = 32'd4;
         WD = 32'hABCDEF00;
@@ -161,20 +146,14 @@ module data_memory_tb;
         check("DM-03 Escritura direccion 4",
               32'hABCDEF00);
 
-        // ====================================================
         // TEST 4 - Lectura de un dato anterior
-        // ====================================================
-
         A = 32'd0;
         #1;
 
         check("DM-04 Conservacion direccion 0",
               32'h12345678);
 
-        // ====================================================
         // TEST 5 - Escritura deshabilitada
-        // ====================================================
-
         @(negedge clk);
         A = 32'd0;
         WD = 32'hDEADBEEF;
@@ -186,10 +165,7 @@ module data_memory_tb;
         check("DM-05 MemWrite=0 (sin cambios)",
               32'h12345678);
 
-        // ====================================================
         // TEST 6 - Sin escritura antes del flanco positivo
-        // ====================================================
-
         @(negedge clk);
         A = 32'd252;
         WD = 32'hFFFFFFFF;
@@ -200,10 +176,7 @@ module data_memory_tb;
         check("DM-06 Antes del flanco positivo",
               32'h00000000);
 
-        // ====================================================
         // TEST 7 - Escritura despues del flanco positivo
-        // ====================================================
-
         @(posedge clk);
         #1;
         MemWrite = 0;
@@ -211,20 +184,14 @@ module data_memory_tb;
         check("DM-07 Despues del flanco positivo",
               32'hFFFFFFFF);
 
-        // ====================================================
         // TEST 8 - Lectura de posicion no modificada
-        // ====================================================
-
         A = 32'd8;
         #1;
 
         check("DM-08 Posicion sin modificar",
               32'h00000000);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
-
         $display("");
         $display("========== RESUMEN DATA MEMORY ==========");
         $display("Pruebas ejecutadas: %0d", total_tests);
