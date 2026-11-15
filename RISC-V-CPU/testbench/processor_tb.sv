@@ -1,5 +1,31 @@
 `timescale 1ns/1ps
 
+// ============================================================
+// Proyecto: Procesador RISC-V Uniciclo
+// Curso: Diseño de Sistemas Digitales
+// Grupo: 4 (Los Ohmnivoros)
+//
+// Testbench: Processor (Integracion)
+//
+// Descripcion:
+// Verifica la integracion y funcionamiento del procesador
+// RISC-V uniciclo mediante la ejecucion de un programa propio.
+// Comprueba las siete instrucciones requeridas, el avance
+// del Program Counter y los valores de registros y memoria,
+// comparando resultados mediante indicadores PASS/FAIL.
+//
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera version: 13/11/26
+//
+// Historial de modificaciones:
+// ------------------------------------------------------------
+// Fecha       | Autor              | Descripcion
+// ------------------------------------------------------------
+// 13/11/26    | Ivan Arce Quiros   | Primera version
+// 15/11/26    | Ivan Arce Quiros   | Revision y validacion final
+// ============================================================
+
 module processor_tb;
 
     // =========================================
