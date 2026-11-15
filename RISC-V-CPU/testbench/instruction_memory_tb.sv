@@ -8,20 +8,21 @@
 // Testbench: Instruction Memory
 //
 // Descripcion:
-// Verifica la lectura combinacional de instrucciones,
-// la conversion de direcciones de byte a indices de
-// palabra y la inicializacion con instrucciones NOP.
+// Verifica la inicializacion y lectura de instrucciones
+// de 32 bits almacenadas en la memoria. Comprueba distintas
+// direcciones, instrucciones precargadas y posiciones con NOP,
+// comparando resultados mediante indicadores PASS/FAIL.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera version: 13/11/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripcion
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
-//
+// 13/11/26    | Ivan Arce Quiros   | Primera version
+// 15/11/26    | Ivan Arce Quiros   | Revision y validacion final
 // ============================================================
 
 module instruction_memory_tb;
