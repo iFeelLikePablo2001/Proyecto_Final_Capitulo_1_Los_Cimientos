@@ -50,10 +50,7 @@ module program_counter_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
     // Tarea de verificacion automatica
-    // ========================================================
-
     task automatic check(
         input string       id,
         input logic [31:0] exp_pc
@@ -90,10 +87,7 @@ module program_counter_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
-
     initial begin
 
         reset = 1;
@@ -150,10 +144,7 @@ module program_counter_tb;
         check("PC-06 Carga despues del reset",
               32'h000000A0);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
-
         $display("");
         $display("========== RESUMEN PROGRAM COUNTER ==========");
         $display("Pruebas ejecutadas: %0d", total_tests);
