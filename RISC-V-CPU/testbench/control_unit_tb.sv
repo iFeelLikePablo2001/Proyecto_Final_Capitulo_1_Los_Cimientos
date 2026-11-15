@@ -58,10 +58,7 @@ module control_unit_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
     // Tarea de verificacion automatica
-    // ========================================================
-
     task automatic check(
         input string       id,
         input logic        exp_RegWrite,
@@ -116,10 +113,7 @@ module control_unit_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
-
     initial begin
 
         total_tests  = 0;
@@ -216,10 +210,7 @@ module control_unit_tb;
               1'b0, 1'b0, 4'b0000,
               2'b00, 1'b0, 1'b0);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
-
         $display("");
         $display("========== RESUMEN CONTROL UNIT ==========");
         $display("Pruebas ejecutadas: %0d", total_tests);
