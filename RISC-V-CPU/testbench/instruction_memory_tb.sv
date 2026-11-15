@@ -45,10 +45,7 @@ module instruction_memory_tb;
     integer passed_tests;
     integer failed_tests;
 
-    // ========================================================
     // Tarea de verificacion automatica
-    // ========================================================
-
     task automatic check(
         input string       id,
         input logic [31:0] exp_rd
@@ -87,10 +84,7 @@ module instruction_memory_tb;
         end
     endtask
 
-    // ========================================================
     // Ejecucion de pruebas
-    // ========================================================
-
     initial begin
 
         A = 32'd0;
@@ -147,10 +141,7 @@ module instruction_memory_tb;
         check("IM-06 Posicion con NOP",
               32'h00000013);
 
-        // ====================================================
         // Resumen final
-        // ====================================================
-
         $display("");
         $display("========== RESUMEN INSTRUCTION MEMORY ==========");
         $display("Pruebas ejecutadas: %0d", total_tests);
