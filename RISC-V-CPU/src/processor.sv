@@ -8,7 +8,7 @@
 // Descripción:
 // Módulo top. Integra el datapath y la unidad de control 
 // Conectando los modulos disponibles funcionando a una 
-// instruccion por ciclo de reloj. Sopoporta instrucciones
+// instruccion por ciclo de reloj. Soporta instrucciones
 // tipo R, I y S. 
 //
 // Autor / Developer:
@@ -20,16 +20,11 @@
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
 // 13/11/2026  | Pablo Cabrera      | Primera versión
-// ____/____/  | _________________  | ________________________
+// 15/11/2026  | Pablo Cabrera      | Correccion typo y eliminacion de INIT_FILE por crashes
 // ____/____/  | _________________  | ________________________
 //
 // ============================================================
-
-// ============================================================
-// PARÁMETROS
 // ------------------------------------------------------------
-// INIT_FILE    : Archivo .hex con el para cargar instruction_memory.
-//                Si es "", la memoria se llena con 0.
 //
 // ENTRADAS
 // ------------------------------------------------------------
@@ -43,9 +38,7 @@
 // Instr        : Instrucción actual de 32 bits.
 // ============================================================
 
-module processor #(
-    parameter string INIT_FILE = ""
-) (
+module processor (
     input  logic        clk,
     input  logic        reset,
     output logic [31:0] PC,
@@ -87,9 +80,7 @@ module processor #(
   // Memoria de instrucciones: entrega la instrucción en la
   // dirección PC
   // --------------------------------------------------------
-  instruction_memory #(
-      .INIT_FILE(INIT_FILE)
-  ) imem (
+  instruction_memory imem (
       .A (PC),
       .RD(Instr)
   );
@@ -100,7 +91,7 @@ module processor #(
   //   Instr[14:12] = funct3
   //   Instr[31:25] = funct7
   // --------------------------------------------------------
-  control_unit cu (S
+  control_unit cu (
       .opcode    (Instr[6:0]),
       .funct3    (Instr[14:12]),
       .funct7    (Instr[31:25]),
