@@ -2,26 +2,27 @@
 
 // ============================================================
 // Proyecto: Procesador RISC-V Uniciclo
-// Curso: Diseno de Sistemas Digitales
+// Curso: Diseño de Sistemas Digitales
 // Grupo: 4 (Los Ohmnivoros)
 //
 // Testbench: Data Memory
 //
 // Descripcion:
-// Verifica las operaciones de lectura y escritura de la
-// memoria de datos, incluyendo la senal MemWrite y
-// el comportamiento sincronizado con el reloj.
+// Verifica la lectura y escritura de datos de 32 bits en
+// memoria. Comprueba la inicializacion, escritura sincrona,
+// conservacion de datos y funcionamiento de MemWrite,
+// comparando resultados mediante indicadores PASS/FAIL.
 //
-// Autor / Verification Engineer:
-// Nombre: ______________________________
-// Fecha: ____/____/______
+// Autor / Developer:
+// Nombre: Ivan Arce Quiros
+// Fecha de primera version: 13/11/26
 //
 // Historial de modificaciones:
 // ------------------------------------------------------------
 // Fecha       | Autor              | Descripcion
 // ------------------------------------------------------------
-// ____/____/  | _________________  | Primera version
-//
+// 13/11/26    | Ivan Arce Quiros   | Primera version
+// 15/11/26    | Ivan Arce Quiros   | Revision y validacion final
 // ============================================================
 
 module data_memory_tb;
