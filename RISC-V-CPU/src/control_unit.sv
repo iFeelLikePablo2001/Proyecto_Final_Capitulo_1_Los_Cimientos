@@ -20,7 +20,7 @@
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
 // 13/11/2026  | Pablo Cabrera      | Primera versión
-// 23/11/2026  | Julán Murillo      | Implementación de beq, blt, bge, jal
+// 23/11/2026  | Julán Murillo      | Identificación de beq, blt, bge, jal
 // ____/____/  | _________________  | ________________________
 //
 // ============================================================
