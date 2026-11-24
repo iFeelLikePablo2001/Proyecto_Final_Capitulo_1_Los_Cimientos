@@ -21,7 +21,7 @@
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
 // 10/11/2026  | Julián Murillo     | Primera versión
-// 15/11/2026  | Ivan Arce          | Ajustes de compatibilidad para simulacion
+// 15/11/2026  | Ivan Arce          | Ajustes de compatibilidad para simulación
 // ____/____/  | _________________  | ________________________
 //
 // ============================================================
@@ -45,8 +45,8 @@
 // ============================================================
 
 module instruction_memory #(
-    parameter int    DEPTH     = 64,  //Debe de ser potencia de 2
-    parameter INIT_FILE = ""
+    parameter int DEPTH     = 64,  //Debe de ser potencia de 2
+    parameter     INIT_FILE = ""
 ) (
     input  logic [31:0] A,  //Dirección
     output logic [31:0] RD  //Instrucción

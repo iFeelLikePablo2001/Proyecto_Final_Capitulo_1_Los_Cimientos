@@ -20,7 +20,7 @@
 // Fecha       | Autor              | Descripción
 // ------------------------------------------------------------
 // 13/11/2026  | Pablo Cabrera      | Primera versión
-// ____/____/  | _________________  | ________________________
+// 23/11/2026  | Julán Murillo      | Implementación de beq, blt, bge, jal
 // ____/____/  | _________________  | ________________________
 //
 // ============================================================
@@ -54,7 +54,10 @@ module control_unit (
     output logic [3:0] ALUControl,
     output logic [1:0] ImmSrc,
     output logic       MemWrite,
-    output logic       ResultSrc
+    output logic [1:0] ResultSrc,
+    output logic       Branch,
+    output logic       Jump
+
 );
 
   // ========================================================
@@ -67,6 +70,8 @@ module control_unit (
   localparam logic [6:0] OP_ADDI = 7'b0010011;  // addi
   localparam logic [6:0] OP_LW = 7'b0000011;  // lw
   localparam logic [6:0] OP_SW = 7'b0100011;  // sw
+  localparam logic [6:0] OP_BTYPE = 7'b0001100011;  //beq, blt, bge
+  localparam logic [6:0] OP_JTYPE = 7'b1101111;  //jal
 
   // Códigos internos de operaciones ALU
   localparam logic [3:0] ALU_ADD = 4'b0000;
@@ -83,16 +88,21 @@ module control_unit (
     ALUControl = ALU_ADD;
     ImmSrc     = 2'b00;
     MemWrite   = 1'b0;
-    ResultSrc  = 1'b0;
+    ResultSrc  = 2'b00;
+    Branch     = 1'b0;
+    Jump       = 1'b0;
 
     // "case" elige comportaminento según el opcode
     case (opcode)
 
-      // R-type: add, sub, and, or 
+      // R-type: add, sub, and, or
       // ALUSrc = 0 y ResultSrc = 0 (valores por defecto): la ALU opera
       // rs1 con rs2 y se guarda el resultado de la ALU.
       // RegWrite solo se activa si funct3/funct7 forman una instrucción válida.
       OP_RTYPE: begin
+        Branch = 1'b0;
+        Jump   = 1'b0;
+
         case (funct3)
           3'b000: begin  // add o sub según funct7
             if (funct7 == 7'b0000000) begin
@@ -115,7 +125,7 @@ module control_unit (
               ALUControl = ALU_OR;
             end
           end
-          default: ;  
+          default: ;
         endcase
       end
 
@@ -125,29 +135,85 @@ module control_unit (
           RegWrite   = 1'b1;
           ALUSrc     = 1'b1;  // 2do operando = inmediato
           ImmSrc     = 2'b00;
-          ALUControl = ALU_ADD;  
+          ALUControl = ALU_ADD;
+          Branch     = 1'b0;
+          Jump       = 1'b0;
         end
       end
 
-      // lw rd, imm(rs1) 
+      // lw rd, imm(rs1)
       OP_LW: begin
         if (funct3 == 3'b010) begin  // lw 32 bits
           RegWrite   = 1'b1;
           ALUSrc     = 1'b1;  // dirección = rs1 + imm
-          ImmSrc     = 2'b00; 
+          ImmSrc     = 2'b00;
           ALUControl = ALU_ADD;
-          ResultSrc  = 1'b1;  // se guarda el dato en memoria
+          ResultSrc  = 0'b00;  // se guarda el dato en memoria
+          Branch     = 1'b0;
+          Jump       = 1'b0;
         end
       end
 
-      // sw rs2, imm(rs1) 
+      // sw rs2, imm(rs1)
       OP_SW: begin
         if (funct3 == 3'b010) begin  // sw 32 bits
           MemWrite   = 1'b1;  // escribir en memoria
           ALUSrc     = 1'b1;  // dirección = rs1 + imm
-          ImmSrc     = 2'b01; 
+          ImmSrc     = 2'b01;
           ALUControl = ALU_ADD;
+          Branch     = 1'b0;
+          Jump       = 1'b0;
         end
+      end
+
+      //Instrucción B
+      OP_BTYPE: begin
+
+        case (funct3)
+          3'b000: begin  // beq
+            RegWrite = 1'b0;
+            MemWrite = 1'b0;
+            ImmSrc = 2'b10;
+            ALUSrc = 1'b0;  //Este valor es X
+            ALUControl = ALU_ADD;  //También X
+            ResultSrc = 2'b00;  //X
+            Branch = 1'b1;
+            Jump = 1'b0;
+          end
+          3'b100: begin  // blt
+            RegWrite = 1'b0;
+            MemWrite = 1'b0;
+            ImmSrc = 2'b10;
+            ALUSrc = 1'b0;  //Este valor es X
+            ALUControl = ALU_ADD;  //También X
+            ResultSrc = 2'b00;  //X
+            Branch = 1'b1;
+            Jump = 1'b0;
+          end
+          3'b101: begin  // bge
+            RegWrite = 1'b0;
+            MemWrite = 1'b0;
+            ImmSrc = 2'b10;
+            ALUSrc = 1'b0;  //Este valor es X
+            ALUControl = ALU_ADD;  //También X
+            ResultSrc = 2'b00;  //X
+            Branch = 1'b1;
+            Jump = 1'b0;
+          end
+          default: ;
+        endcase
+      end
+
+      // jal
+      OP_JTYPE: begin
+        RegWrite = 1'b1;
+        MemWrite = 1'b0;
+        ImmSrc = 2'b11;
+        ALUSrc = 1'b0;  //Este valor es X
+        ALUControl = ALU_ADD;  //También X
+        ResultSrc = 2'b10;
+        Branch = 1'b0;
+        Jump = 1'b1;
       end
 
       // Cualquier otra instrucción
