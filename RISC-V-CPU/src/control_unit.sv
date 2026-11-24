@@ -21,7 +21,7 @@
 // ------------------------------------------------------------
 // 13/11/2026  | Pablo Cabrera      | Primera versión
 // 23/11/2026  | Julán Murillo      | Identificación de beq, blt, bge, jal
-// ____/____/  | _________________  | ________________________
+// 24/11/2026  | Pablo Cabrera      | Correccion ResultSrc OP_LW y opcode OP_BTYPE
 //
 // ============================================================
 
@@ -39,10 +39,11 @@
 //                1 = 2do operando es el inmediato.
 // ALUControl   : Operación de la ALU:
 //                0000 ADD, 0001 SUB, 0010 AND, 0011 OR.
-// ImmSrc       : Formato del inmediato: 00 = I-type, 01 = S-type.
+// ImmSrc       : Formato del inmediato: 00 = I-type, 01 = S-type, 10 = B-type, 11 = J-type.
 // MemWrite     : Habilita la escritura en la memoria de datos.
-// ResultSrc    : 0 = resultado de la ALU,
-//                1 = dato leído de la memoria de datos.
+// ResultSrc    : 00 = resultado de la ALU,
+//                01 = dato leído de la memoria de datos.
+//                10 = PC + 4 (para jal).
 // ============================================================
 
 module control_unit (
@@ -70,7 +71,7 @@ module control_unit (
   localparam logic [6:0] OP_ADDI = 7'b0010011;  // addi
   localparam logic [6:0] OP_LW = 7'b0000011;  // lw
   localparam logic [6:0] OP_SW = 7'b0100011;  // sw
-  localparam logic [6:0] OP_BTYPE = 7'b0001100011;  //beq, blt, bge
+  localparam logic [6:0] OP_BTYPE = 7'b1100011;  //beq, blt, bge
   localparam logic [6:0] OP_JTYPE = 7'b1101111;  //jal
 
   // Códigos internos de operaciones ALU
@@ -148,7 +149,7 @@ module control_unit (
           ALUSrc     = 1'b1;  // dirección = rs1 + imm
           ImmSrc     = 2'b00;
           ALUControl = ALU_ADD;
-          ResultSrc  = 0'b00;  // se guarda el dato en memoria
+          ResultSrc  = 2'b01;  // se guarda el dato en memoria
           Branch     = 1'b0;
           Jump       = 1'b0;
         end
