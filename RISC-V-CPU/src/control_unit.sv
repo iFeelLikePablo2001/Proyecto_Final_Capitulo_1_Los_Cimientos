@@ -8,8 +8,7 @@
 // Descripción:
 // Unidad de control principal del procesador. Recibe los campos
 // opcode, funct3 y funct7 de la instrucción y genera las señales
-// de control para el datapath. Incluye unicaente instrucciones
-// tipo R, I y S.
+// de control para el datapath. Incluye instrucciones tipo R, I, S, B y J.
 //
 // Autor / Developer:
 // Nombre: Pablo Cabrera

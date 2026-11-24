@@ -7,9 +7,7 @@
 //
 // Descripción:
 // Genera y extiende a 32 bits el valor inmediato contenido en
-// una instrucción RISC-V. En esta etapa del proyecto se deben
-// implementar los formatos de inmediato indicados en la
-// especificación del Capítulo 1.
+// una instrucción RISC-V. Soporta instrucciones tipo I, S, B y J.
 //
 // Autor / Developer: Pablo Cabrera
 // Nombre: imm_gen.sv
@@ -61,7 +59,7 @@ module imm_gen (
       // J-type: imm[20|10:1|11|19:12] = Instr[31:12]
       2'b11: ImmExt = {{11{Instr[31]}}, Instr[31], Instr[19:12], Instr[20], Instr[30:21], 1'b0};
 
-      // Formatos no implementados en el Capítulo 1 (B, J, U)
+      // Formatos no implementados 
       default: ImmExt = 32'b0;
     endcase
   end

@@ -63,7 +63,7 @@ module mux3to1 #(
       2'b00:   Y = A;
       2'b01:   Y = B;
       2'b10:   Y = C;
-      default: Y = '0;  // 2'b11 no se usa: salida en 0 (evita latches)
+      default: Y = '0;  // 2'b11 no se usa: salida en 0
     endcase
   end
 
